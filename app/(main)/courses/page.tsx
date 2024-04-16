@@ -1,9 +1,10 @@
-import { getCourses } from '@/database/queries'
+import { getCourses, getUserProgress } from '@/database/queries'
 import React from 'react'
 import { List } from './list';
 
 const Courses = async () => {
     const data = await getCourses();
+    const userProgress = await getUserProgress()
 
   return (
     <div className='h-full max-w-[912px] px-3 mx-auto'>
@@ -12,7 +13,7 @@ const Courses = async () => {
         </h1>
         <List
             courses={data}
-            activeCourseId={1}
+            activeCourseId={userProgress?.activeCourseId}
         />
     </div>
   )
